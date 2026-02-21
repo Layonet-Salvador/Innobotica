@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innobótica - Reglamento y Recursos</title>
+    <title>Innobótica 2026 - InnovaTecNM</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -23,28 +23,55 @@
 
         /* --- SIDEBAR --- */
         .sidebar {
-            width: 280px; background: linear-gradient(180deg, var(--tecnm-blue) 0%, var(--tecnm-dark) 100%);
+            width: 300px; background: linear-gradient(180deg, var(--tecnm-blue) 0%, var(--tecnm-dark) 100%);
             color: white; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,0.1);
             z-index: 100; flex-shrink: 0;
         }
         .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .sidebar-header h2 { margin: 0; font-size: 1.4rem; font-weight: 700; color: var(--white); }
         .sidebar-header span { color: var(--tecnm-gold); font-size: 0.9rem; text-transform: uppercase; display: block; margin-top: 5px; }
-        .nav-menu { list-style: none; padding: 20px 0; margin: 0; overflow-y: auto; }
+        
+        .nav-menu { list-style: none; padding: 20px 0; margin: 0; overflow-y: auto; flex-grow: 1; }
+        
         .nav-menu li {
-            padding: 16px 25px; cursor: pointer; border-left: 4px solid transparent;
-            transition: var(--transition); font-size: 0.95rem; opacity: 0.8;
+            padding: 12px 25px; cursor: pointer; border-left: 4px solid transparent;
+            transition: var(--transition); font-size: 0.9rem; opacity: 0.8;
+            display: flex; align-items: center; justify-content: space-between;
         }
         .nav-menu li:hover { background-color: rgba(255,255,255,0.05); opacity: 1; padding-left: 30px; }
         .nav-menu li.active {
             background-color: rgba(255,255,255,0.1); border-left-color: var(--tecnm-gold);
             color: var(--white); opacity: 1; font-weight: 600;
         }
+        .stage-tag { font-size: 0.7rem; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px; }
+
+        /* --- BOTÓN LLAMATIVO RED NACIONAL --- */
+        .nav-menu li.highlight-nav {
+            background: linear-gradient(45deg, var(--tecnm-gold), #e8ba77);
+            color: var(--tecnm-dark);
+            font-weight: 700;
+            border-radius: 8px;
+            margin: 20px;
+            padding: 15px;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(212, 163, 89, 0.3);
+            border-left: none;
+            text-align: center;
+            opacity: 1;
+        }
+        .nav-menu li.highlight-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 163, 89, 0.5);
+            padding-left: 15px;
+        }
+        .nav-menu li.highlight-nav.active {
+            border: 2px solid var(--white);
+            background: linear-gradient(45deg, #e8ba77, var(--tecnm-gold));
+        }
 
         /* --- ÁREA PRINCIPAL --- */
         .main-wrapper { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
-        /* --- HEADER CON LOGOS OFICIALES --- */
         .top-bar {
             background-color: var(--white); height: 90px; display: flex; align-items: center;
             justify-content: space-between; padding: 0 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 90;
@@ -56,126 +83,83 @@
             background: rgba(27, 57, 106, 0.1); padding: 8px 16px; border-radius: 20px;
         }
 
-        /* --- CONTENIDO --- */
         .content-scroll { flex: 1; overflow-y: auto; padding: 40px; scroll-behavior: smooth; }
         .content-section { display: none; max-width: 1000px; margin: 0 auto 50px auto; animation: slideUp 0.5s ease; }
         .content-section.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- ESTILOS GENERALES DE TARJETAS --- */
         .card { background: var(--white); border-radius: 12px; padding: 40px; box-shadow: var(--shadow-card); margin-bottom: 30px; border-top: 4px solid var(--tecnm-blue); }
         h1 { color: var(--tecnm-blue); font-size: 2rem; margin-top: 0; margin-bottom: 10px; }
         h2 { color: var(--tecnm-dark); font-size: 1.4rem; margin-top: 30px; border-left: 4px solid var(--tecnm-gold); padding-left: 15px; }
+        h3 { color: var(--tecnm-blue); margin-top: 25px; }
         p, li { line-height: 1.7; color: #4a4a4a; font-size: 1rem; }
         
-        /* --- ACORDEONES INTERACTIVOS (SEGUIDORES) --- */
         .accordion {
-            background-color: #fff;
-            color: var(--tecnm-blue);
-            cursor: pointer;
-            padding: 18px 20px;
-            width: 100%;
-            border: 1px solid #eaeaea;
-            border-radius: 8px;
-            text-align: left;
-            outline: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: 0.4s;
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: #fff; color: var(--tecnm-blue); cursor: pointer; padding: 18px 20px; width: 100%;
+            border: 1px solid #eaeaea; border-radius: 8px; text-align: left; outline: none; font-size: 1.1rem;
+            font-weight: 600; transition: 0.4s; margin-top: 15px; display: flex; justify-content: space-between; align-items: center;
         }
         .accordion:hover, .accordion.active-acc { background-color: rgba(27, 57, 106, 0.05); border-color: var(--tecnm-blue); }
-        .accordion:after {
-            content: '\002B'; /* Signo de suma */
-            color: var(--tecnm-gold); font-weight: bold; float: right; margin-left: 5px; font-size: 1.5rem;
-        }
-        .accordion.active-acc:after { content: "\2212"; /* Signo de resta */ }
+        .accordion:after { content: '\002B'; color: var(--tecnm-gold); font-weight: bold; float: right; margin-left: 5px; font-size: 1.5rem; }
+        .accordion.active-acc:after { content: "\2212"; }
         .panel {
-            padding: 0 20px; background-color: white; max-height: 0;
-            overflow: hidden; transition: max-height 0.4s ease-out;
+            padding: 0 20px; background-color: white; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
             border-left: 2px solid var(--tecnm-blue); margin-left: 10px; border-radius: 0 0 8px 8px;
         }
         .panel-inner { padding: 20px 0; }
 
-        /* --- GRIDS Y BADGES (REGLAMENTO) --- */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        
-        .info-box {
-            background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-        .info-box h4 { margin-top: 0; color: var(--tecnm-dark); font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
-        
-        .badge {
-            display: inline-block; padding: 5px 12px; background: rgba(212, 163, 89, 0.15);
-            color: #b0803c; border-radius: 15px; font-size: 0.85rem; font-weight: 600; margin: 4px;
-        }
+        .info-box { background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .info-box h4 { margin-top: 0; color: var(--tecnm-dark); font-size: 1.05rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+        .badge { display: inline-block; padding: 5px 12px; background: rgba(212, 163, 89, 0.15); color: #b0803c; border-radius: 15px; font-size: 0.85rem; font-weight: 600; margin: 4px; }
         .badge-blue { background: rgba(27, 57, 106, 0.1); color: var(--tecnm-blue); }
-
         .alert-box { background-color: #fff8e1; border-left: 4px solid #ffc107; padding: 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
         
-        /* Progress Bar para Memoria Técnica */
         .score-row { display: flex; align-items: center; margin-bottom: 12px; }
         .score-label { width: 250px; font-weight: 600; font-size: 0.9rem; }
         .score-bar-bg { flex-grow: 1; background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-right: 15px; }
         .score-bar-fill { height: 100%; background: var(--tecnm-blue); }
         .score-pts { width: 40px; text-align: right; font-weight: bold; color: var(--tecnm-gold); }
 
-        /* --- ESTILOS PARA LA SECCIÓN DE TUTORÍAS (RESTAURADOS) --- */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .resource-card {
-            background: var(--white);
-            border: 1px solid #eaeaea;
-            border-radius: 10px;
-            padding: 20px;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-        .resource-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--tecnm-gold);
-            box-shadow: 0 8px 15px rgba(212, 163, 89, 0.2);
-        }
-        .resource-img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 15px;
-        }
+        .category-selector { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 2px solid #eaeaea; padding-bottom: 15px; overflow-x: auto; }
+        .cat-btn { background: #f0f0f0; border: none; padding: 10px 20px; border-radius: 20px; font-weight: 600; color: var(--tecnm-blue); cursor: pointer; transition: all 0.3s; white-space: nowrap; font-family: 'Montserrat', sans-serif; }
+        .cat-btn:hover { background: #e4e4e4; }
+        .cat-btn.active { background: var(--tecnm-blue); color: white; box-shadow: 0 4px 10px rgba(27, 57, 106, 0.2); }
+        .cat-content { display: none; animation: fadeIn 0.4s ease; }
+        .cat-content.active { display: block; }
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .resource-card { background: var(--white); border: 1px solid #eaeaea; border-radius: 10px; padding: 20px; transition: var(--transition); display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .resource-card:hover { transform: translateY(-5px); border-color: var(--tecnm-gold); box-shadow: 0 8px 15px rgba(212, 163, 89, 0.2); }
+        .resource-img { width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; }
         .resource-title { font-weight: 600; color: var(--tecnm-blue); margin-bottom: 10px; font-size: 1.1rem; }
         .resource-desc { font-size: 0.9rem; flex-grow: 1; margin-bottom: 15px; }
-        .btn-link {
-            display: inline-block; padding: 8px 15px; background: var(--tecnm-blue);
-            color: white; text-decoration: none; border-radius: 5px; font-size: 0.85rem;
-            text-align: center; font-weight: 600; transition: background 0.3s;
-        }
+        .btn-link { display: inline-block; padding: 8px 15px; background: var(--tecnm-blue); color: white; text-decoration: none; border-radius: 5px; font-size: 0.85rem; text-align: center; font-weight: 600; transition: background 0.3s; }
         .btn-link:hover { background: var(--tecnm-dark); color: white; }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        .tip-list li { margin-bottom: 15px; }
-        .tip-list strong { color: var(--tecnm-gold); }
+        .tool-list { list-style: none; padding: 0; }
+        .tool-list li { background: #fdfdfd; border-left: 3px solid var(--tecnm-gold); margin-bottom: 10px; padding: 15px; border-radius: 0 5px 5px 0; }
 
+        .styled-table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 0.95em; border-radius: 8px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); }
+        .styled-table thead tr { background-color: var(--tecnm-blue); color: #ffffff; text-align: left; }
+        .styled-table th, .styled-table td { padding: 12px 15px; border-bottom: 1px solid #dddddd; }
+        .styled-table tbody tr:nth-of-type(even) { background-color: #f8f9fa; }
+        .styled-table tbody tr:last-of-type { border-bottom: 2px solid var(--tecnm-blue); }
+
+        /* --- ESTILOS RED NACIONAL --- */
+        .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .profile-card { background: #fcfcfc; border: 1px solid #eaeaea; border-radius: 15px; padding: 30px 20px; text-align: center; transition: var(--transition); border-bottom: 4px solid transparent; }
+        .profile-card:hover { transform: translateY(-5px); background: #fff; box-shadow: 0 10px 25px rgba(27, 57, 106, 0.1); border-bottom-color: var(--tecnm-gold); }
+        .profile-photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin: 0 auto 15px auto; border: 3px solid var(--tecnm-blue); padding: 3px; background: white; }
+        .profile-name { font-size: 1.15rem; color: var(--tecnm-blue); font-weight: 700; margin-bottom: 5px; }
+        .profile-inst { font-size: 0.9rem; color: #666; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .profile-skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 20px; min-height: 56px; align-content: flex-start; }
+        .profile-desc { font-size: 0.85rem; color: #555; margin-bottom: 20px; line-height: 1.5; min-height: 60px; }
+        .btn-outline { display: inline-block; padding: 8px 25px; border: 2px solid var(--tecnm-blue); color: var(--tecnm-blue); border-radius: 25px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+        .btn-outline:hover { background: var(--tecnm-blue); color: white; }
     </style>
 </head>
 <body>
@@ -183,13 +167,22 @@
     <aside class="sidebar">
         <div class="sidebar-header">
             <h2>INNOBÓTICA</h2>
-            <span>Reglamento Oficial</span>
+            <span>InnovaTecNM 2026</span>
         </div>
         <ul class="nav-menu" id="mainMenu">
-            <li data-target="inicio">Criterios Generales</li>
-            <li data-target="seguidor" class="active">Seguidores de Línea</li>
-            <li data-target="minisumo">Mini Sumo</li>
-            <li data-target="tutorias" style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px; padding-top: 20px;">📚 Recursos</li>
+            <li data-target="inicio" class="active">Criterios Generales</li>
+            <li data-target="seguidor">1. Seguidores de Línea <span class="stage-tag">Local</span></li>
+            <li data-target="minisumo">2. Minisumo <span class="stage-tag">Local</span></li>
+            <li data-target="aplicada">3. Robótica Aplicada <span class="stage-tag">Regional</span></li>
+            <li data-target="humanoides">4. Humanoides <span class="stage-tag">Regional</span></li>
+            <li data-target="buscadores">5. Buscadores <span class="stage-tag">Regional</span></li>
+            <li data-target="vant">6. VANT (Drones) <span class="stage-tag">Regional</span></li>
+            <li data-target="cansat">7. CanSat <span class="stage-tag">Regional</span></li>
+            <li data-target="soccer">8. Robot Soccer <span class="stage-tag">Regional</span></li>
+            <li data-target="bioinspirada">Exhibición Bioinspirada</li>
+            <li data-target="tutorias" style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px; padding-top: 20px;">📚 Hub de Recursos</li>
+            
+            <li data-target="red-nacional" class="highlight-nav">🌐 Red Nacional de Colaboradores</li>
         </ul>
     </aside>
 
@@ -204,218 +197,452 @@
 
         <div class="content-scroll">
             
-            <section id="inicio" class="content-section">
+            <section id="inicio" class="content-section active">
                 <div class="card">
-                    <h1>Criterios Generales</h1>
-                    <p>Haz clic en "Seguidores de Línea" en el menú izquierdo para ver el reglamento interactivo.</p>
-                </div>
-            </section>
-
-            <section id="seguidor" class="content-section active">
-                <div class="card">
-                    <h1>Reglamento Técnico: Seguidores de Línea</h1>
-                    <p style="font-size: 1.1rem;">La categoría consiste en el desarrollo de un robot autónomo capaz de recorrer un circuito de alto contraste (línea negra sobre fondo blanco) en el menor tiempo posible.</p>
-
-                    <div class="grid-4" style="margin-bottom: 30px;">
-                        <div class="info-box" style="border-top: 3px solid var(--tecnm-gold);">
-                            <h4>🎯 Objetivo General</h4>
-                            <p style="font-size: 0.85rem; margin-bottom:0;">Crear sistemas autónomos con hardware y algoritmos de alta precisión para resolver trayectorias complejas.</p>
-                        </div>
-                        <div class="info-box">
-                            <h4>🏭 Industria 4.0</h4>
-                            <p style="font-size: 0.85rem; margin-bottom:0;">Simulación de AGVs y AMRs para optimizar flujos en almacenes logísticos inteligentes.</p>
-                        </div>
-                        <div class="info-box">
-                            <h4>🏥 Sector Salud</h4>
-                            <p style="font-size: 0.85rem; margin-bottom:0;">Bases para robots de servicio que transporten suministros o muestras biológicas.</p>
-                        </div>
-                        <div class="info-box">
-                            <h4>🌾 Smart Cities & Agro</h4>
-                            <p style="font-size: 0.85rem; margin-bottom:0;">Sistemas de monitoreo en invernaderos o reparto de última milla mediante señalética.</p>
-                        </div>
+                    <h1>InnoBótica 2026: Lineamientos Oficiales</h1>
+                    
+                    <div class="info-box" style="border-top: 3px solid var(--tecnm-gold); margin-bottom: 25px;">
+                        <h4>🎯 Objetivo</h4>
+                        <p style="margin-bottom:0;">Desarrollar y difundir propuestas en las que se aplican las ramas del conocimiento que convergen en la robótica, incentivando la creatividad, habilidades y destrezas tecnológicas, así como las capacidades de investigación y desarrollo innovador en la resolución de problemáticas a través del trabajo multidisciplinario y colaborativo.</p>
                     </div>
 
-                    <button class="accordion">1. Especificaciones de Construcción y Componentes</button>
-                    <div class="panel">
-                        <div class="panel-inner">
-                            <p><em>El incumplimiento de cualquier punto resultará en la no homologación del prototipo.</em></p>
-                            <div class="grid-2">
-                                <div class="info-box">
-                                    <h4>📏 Dimensiones y Peso</h4>
-                                    <ul>
-                                        <li><strong>Área Máxima:</strong> 250 mm x 250 mm.</li>
-                                        <li><strong>Altura/Peso:</strong> Sin límite.</li>
-                                    </ul>
-                                </div>
-                                <div class="info-box">
-                                    <h4>⚠️ Materiales y Seguridad</h4>
-                                    <ul>
-                                        <li><strong>Llantas:</strong> Sin residuos. Secas al entrar.</li>
-                                        <li><strong>Estructura:</strong> Sin bordes filosos.</li>
-                                        <li><strong>Baterías:</strong> Solo secas (LiPo, Li-ion, NiMH). Aisladas.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="alert-box" style="margin-top: 20px;">
-                                <h4 style="margin-top:0; color: #856404;">🔌 Regla Estricta: Diseño de PCB</h4>
-                                <p><strong>ESTA ES UNA CATEGORÍA ÚNICA (Sin distinción entre amateur o profesional).</strong></p>
-                                <p style="margin-bottom:0;">No se permite el uso de robots pre-ensamblados o kits comerciales. Si se usa una PCB, <strong>debe ser de diseño propio</strong>. Puedes usar métodos caseros (planchado, ruteado CNC) o mandarlas a fabricar con proveedores profesionales (ej. <em>JLCPCB, PCBWay</em>). <br><br><em>Nota: Si el jurado identifica PCBs idénticas entre distintos equipos, se considerarán kits comerciales y causará descalificación automática por falta de originalidad.</em></p>
-                            </div>
-
-                            <div class="info-box" style="margin-top: 20px;">
-                                <h4>⚙️ Componentes Permitidos</h4>
-                                <span class="badge badge-blue">Motores: Brushless / DC / Industriales</span>
-                                <span class="badge badge-blue">Succión: Turbinas EDF</span>
-                                <span class="badge badge-blue">Sensores: Infrarrojos / Láser / Encoders (Sin límite)</span>
-                                <span class="badge badge-blue">Control: ESP32 / Arduino / Pico / STM32</span>
-                            </div>
+                    <h2>Consideraciones Específicas</h2>
+                    <div class="grid-2">
+                        <div class="info-box">
+                            <h4>👤 Perfil y Registro</h4>
+                            <ul>
+                                <li>Estar inscrito en Licenciatura, Profesional Asociado o TSU.</li>
+                                <li><strong>Exclusividad:</strong> Cada estudiante podrá estar registrado en un <em>único</em> equipo.</li>
+                                <li><strong>Asesores:</strong> Personal del TecNM o estudiantes de posgrado (Opcional).</li>
+                            </ul>
                         </div>
-                    </div>
-
-                    <button class="accordion">2. Área de Competencia (La Pista)</button>
-                    <div class="panel">
-                        <div class="panel-inner">
-                            <ul style="list-style-type: none; padding-left: 0;">
-                                <li style="margin-bottom: 10px;">✅ <strong>Material y Colores:</strong> Pista de Melamina. Fondo Blanco con Línea Negra.</li>
-                                <li style="margin-bottom: 10px;">✅ <strong>Grosor de Línea:</strong> 2 cm (20 mm) ± 10%.</li>
-                                <li style="margin-bottom: 10px;">✅ <strong>Longitud:</strong> Variable, entre 5 y 20 metros.</li>
-                                <li style="margin-bottom: 10px;">✅ <strong>Geometría Posible:</strong> Curvas cerradas, intersecciones, y ángulos ortogonales de 90°.</li>
-                                <li>✅ <strong>Entorno:</strong> Luz ambiental variable. Cuenta con marcas de inicio y meta.</li>
+                        <div class="info-box">
+                            <h4>📋 Requisitos de Inscripción</h4>
+                            <ul>
+                                <li>Ficha de Registro oficial.</li>
+                                <li>Memoria Técnica del proyecto.</li>
+                                <li>Prototipo virtual o video de la propuesta (cuando aplique).</li>
                             </ul>
                         </div>
                     </div>
 
-                    <button class="accordion">3. Protocolos de Inicio, Homologación y Asesores</button>
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>🛠️ Habilidades Clave Esperadas</h4>
+                        <span class="badge badge-blue">Programación</span>
+                        <span class="badge badge-blue">Diseño Eléctrico y Mecánico</span>
+                        <span class="badge badge-blue">Manufactura de PCBs</span>
+                        <span class="badge badge-blue">Sistemas Mecatrónicos</span>
+                        <span class="badge badge-blue">Expresión Oral</span>
+                    </div>
+
+                    <h2>Categorías Oficiales</h2>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Etapas de Participación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>1. Robots Minisumo</strong></td><td>LOCAL, REGIONAL, NACIONAL</td></tr>
+                            <tr><td><strong>2. Robots Seguidores de Línea</strong></td><td>LOCAL, REGIONAL, NACIONAL</td></tr>
+                            <tr><td>3. Robótica Aplicada</td><td>REGIONAL, NACIONAL</td></tr>
+                            <tr><td>4. Robots Humanoides</td><td>REGIONAL, NACIONAL</td></tr>
+                            <tr><td>5. Robots Buscadores</td><td>REGIONAL, NACIONAL</td></tr>
+                            <tr><td>6. VANT (Vehículos Aéreos No Tripulados)</td><td>REGIONAL, NACIONAL</td></tr>
+                            <tr><td>7. Sistemas Aeroespaciales tipo CanSat</td><td>REGIONAL, NACIONAL</td></tr>
+                            <tr><td>8. Robot Soccer</td><td>REGIONAL, NACIONAL</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="alert-box" style="margin-top: 0; border-radius: 8px;">
+                        <strong>🤖 Exhibición Especial:</strong> Se realizará una Demostración de Robótica Bioinspirada (diseño, construcción y programación). Requiere validación de propuestas para la Etapa Nacional.
+                    </div>
+
+                    <h2>Evaluación y Acreditación por Etapas</h2>
+                    <div class="grid-3">
+                        <div class="info-box">
+                            <h4>📍 Etapa Local</h4>
+                            <p style="font-size:0.9rem;"><strong>Solo Minisumo y Seguidores de Línea.</strong><br>Se evalúa el prototipo, factores medibles (tiempo, precisión), originalidad y dominio técnico.</p>
+                            <span class="badge" style="background:var(--tecnm-blue); color:white; width:100%; text-align:center; display:block; padding:8px; box-sizing:border-box;">Acreditan hasta 2 primeros lugares</span>
+                        </div>
+                        <div class="info-box">
+                            <h4>🌐 Etapa Regional</h4>
+                            <p style="font-size:0.9rem;">Presencial para los acreditados locales y Asíncrona (en línea) para el resto de categorías. Las mejores puntuaciones del ranking avanzan.</p>
+                            <span class="badge" style="background:var(--tecnm-gold); color:white; width:100%; text-align:center; display:block; padding:8px; box-sizing:border-box;">Clasificación a la Nacional</span>
+                        </div>
+                        <div class="info-box">
+                            <h4>🏆 Etapa Nacional</h4>
+                            <p style="font-size:0.9rem;">Se evalúa lo mismo que en fases previas, añadiendo como criterio estricto el <strong>avance y mejora en la fabricación del robot</strong> entre etapas.</p>
+                            <span class="badge" style="background:var(--tecnm-dark); color:white; width:100%; text-align:center; display:block; padding:8px; box-sizing:border-box;">Final Presencial en Sede</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="red-nacional" class="content-section">
+                <div class="card">
+                    <h1>Red Nacional de Colaboradores</h1>
+                    <p style="font-size: 1.1rem; border-left: 4px solid var(--tecnm-gold); padding-left: 15px;">Conoce a los docentes, investigadores y desarrolladores que impulsan el desarrollo de la robótica y la inteligencia artificial en el Tecnológico Nacional de México.</p>
+                    
+                    <div class="profile-grid">
+                        
+                        <div class="profile-card">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=250&q=80" alt="Foto de perfil" class="profile-photo">
+                            <div class="profile-name">Ing. Layonet Salvador Buenrostro P.</div>
+                            <div class="profile-inst">
+                                📍 TecNM Campus Iztapalapa III
+                            </div>
+                            <div class="profile-skills">
+                                <span class="badge badge-blue">Sistemas Inteligentes</span>
+                                <span class="badge badge-blue">Desarrollo Web</span>
+                                <span class="badge badge-blue">Robótica e Impresión 3D</span>
+                            </div>
+                            <div class="profile-desc">
+                                Especialista en el departamento de desarrollo académico. Experiencia en la creación de aplicaciones web institucionales, hubs de innovación tecnológica y manufactura aditiva.
+                            </div>
+                            <a href="#" class="btn-outline">Contactar</a>
+                        </div>
+
+                        <div class="profile-card">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=250&q=80" alt="Foto de perfil" class="profile-photo">
+                            <div class="profile-name">Dra. Mariana Valdez Ríos</div>
+                            <div class="profile-inst">
+                                📍 TecNM Campus Zacatepec
+                            </div>
+                            <div class="profile-skills">
+                                <span class="badge badge-blue">Inteligencia Artificial</span>
+                                <span class="badge badge-blue">Redes Neuronales</span>
+                            </div>
+                            <div class="profile-desc">
+                                Investigadora enfocada en visión computacional para robótica móvil. Asesora en el programa de Maestría en Inteligencia Artificial y coordinadora de proyectos VANT.
+                            </div>
+                            <a href="#" class="btn-outline">Contactar</a>
+                        </div>
+
+                        <div class="profile-card">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=250&q=80" alt="Foto de perfil" class="profile-photo">
+                            <div class="profile-name">Mtro. Fernando Ortiz</div>
+                            <div class="profile-inst">
+                                📍 TecNM Campus Celaya
+                            </div>
+                            <div class="profile-skills">
+                                <span class="badge badge-blue">Mecatrónica</span>
+                                <span class="badge badge-blue">Sistemas Embebidos</span>
+                            </div>
+                            <div class="profile-desc">
+                                Experto en automatización industrial y robótica competitiva. Coordina los equipos representativos de Minisumo y Seguidores de Línea a nivel nacional.
+                            </div>
+                            <a href="#" class="btn-outline">Contactar</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="seguidor" class="content-section">
+                <div class="card">
+                    <h1>REGLAMENTO TÉCNICO: ROBOTS SEGUIDORES DE LÍNEA</h1>
+                    <p>La categoría consiste en el desarrollo de un robot autónomo capaz de recorrer un circuito de alto contraste (línea negra sobre fondo blanco) en el menor tiempo posible asi mismo la categoría de Seguidores de Línea constituye la base del desarrollo de la movilidad autónoma. Estos prototipos representan los sistemas de navegación que permiten a las máquinas interactuar con su entorno mediante rutas guiadas o predefinidas.</p>
+
+                    <button class="accordion">1. Descripción y Objetivos</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <p><strong>Objetivo General:</strong> Fomentar la creación de sistemas autónomos eficientes mediante el diseño de hardware y algoritmos de control de alta precisión, capaces de resolver trayectorias complejas en el menor tiempo posible.</p>
+                            <h4>Objetivos Transversales y de Aplicación Sectorial:</h4>
+                            <ul>
+                                <li><strong>Innovación en la Industria 4.0:</strong> Simular el comportamiento de los Vehículos de Guiado Automático (AGVs) y AMRs (Autonomous Mobile Robots) para la optimización de flujos en almacenes inteligentes y centros logísticos.</li>
+                                <li><strong>Aplicación en el Sector Salud:</strong> Desarrollar las bases para robots de servicio capaces de transportar suministros, medicamentos o muestras biológicas en entornos hospitalarios de manera segura y autónoma.</li>
+                                <li><strong>Sector Agrícola y Ambiental:</strong> Sentar las bases para sistemas de monitoreo en invernaderos o detección de plagas donde el robot deba seguir surcos o trayectorias específicas para la recolección de datos.</li>
+                                <li><strong>Servicios Urbanos y Smart Cities:</strong> Explorar soluciones de última milla para el reparto de paquetería o limpieza automatizada en entornos controlados mediante señalética de guía.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button class="accordion">2. Especificaciones Técnicas</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <p>Los robots deben cumplir estrictamente con las dimensiones y componentes. El incumplimiento de cualquier punto resultará en la no homologación.</p>
+                            
+                            <div class="grid-2">
+                                <div class="info-box">
+                                    <h4>📏 Dimensiones y Peso</h4>
+                                    <ul>
+                                        <li><strong>Área Máxima:</strong> El robot debe caber plenamente en una caja de 250 mm x 250 mm. Todo cable, tornillo o sensor debe estar dentro de la caja de homologación.</li>
+                                        <li><strong>Altura:</strong> Sin límite, siempre que no interfiera con los sensores de meta.</li>
+                                        <li><strong>Peso:</strong> Sin límite establecido, asumiendo que el peso excesivo es penalizado naturalmente por la física del recorrido.</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box">
+                                    <h4>🚫 Restricción de Construcción</h4>
+                                    <ul>
+                                        <li><strong>Prohibición de Kits Comerciales:</strong> No se permite el uso de robots pre-ensamblados o chasis comerciales "listos para armar".</li>
+                                        <li><strong>Diseño de PCB:</strong> Si el robot utiliza una tarjeta de circuito impreso (PCB), esta debe ser de diseño propio del equipo. Si el jurado identifica que varios equipos presentan el mismo diseño de PCB, se considerarán Kits Comerciales y serán descalificados.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="grid-2" style="margin-top: 20px;">
+                                <div class="info-box">
+                                    <h4>⚙️ Componentes Permitidos</h4>
+                                    <ul>
+                                        <li><strong>Motores:</strong> Cualquier tipo (Brushless, DC con reducción metálica o industriales).</li>
+                                        <li><strong>Succión:</strong> Turbinas EDF (Electric Ducted Fan) para carga aerodinámica.</li>
+                                        <li><strong>Sensores:</strong> Sin límite de cantidad (arreglos infrarrojos, láser, encoders).</li>
+                                        <li><strong>Control:</strong> Módulos individuales como ESP32, Arduino Nano, Raspberry Pi Pico o STM32.</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box">
+                                    <h4>⚡ Energía y Alimentación</h4>
+                                    <ul>
+                                        <li><strong>Baterías:</strong> Uso exclusivo de baterías secas (LiPo, Li-ion, NiMH).</li>
+                                        <li><strong>Seguridad:</strong> Las baterías deben estar aisladas y firmemente sujetas al chasis. Prohibido el uso de cables externos o fuentes de alimentación remotas.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="info-box" style="margin-top: 20px;">
+                                <h4>🛡️ Materiales y Seguridad</h4>
+                                <ul>
+                                    <li><strong>Residuos:</strong> Se prohíbe el uso de neumáticos que dejen marcas o residuos pegajosos en la pista. El uso de "líquidos de limpieza" en llantas debe realizarse fuera del área de competencia y deben estar secas al entrar.</li>
+                                    <li><strong>Bordes Filosos:</strong> Ninguna pieza (chasis, soportes o alerones) debe tener bordes filosos que puedan rayar la melamina de la pista.</li>
+                                    <li><strong>Materiales Compuestos:</strong> Si se utiliza fibra de carbono, todos los bordes deben estar sellados con barniz o resina para evitar la liberación de astillas.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="accordion">3. Memoria Técnica</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <p>Todo equipo debe entregar una memoria técnica (PDF, 5-10 páginas) para ser admitido. Es un requisito indispensable para el desempate en el ranking nacional.</p>
+                            
+                            <div class="grid-2">
+                                <div>
+                                    <h4>Contenido Mínimo:</h4>
+                                    <ul class="tool-list">
+                                        <li><strong>Diseño Mecánico:</strong> Justificación de materiales y distribución de masa.</li>
+                                        <li><strong>Sistema Electrónico:</strong> Diagramas de conexión y gestión de sensores.</li>
+                                        <li><strong>Algoritmo de Control:</strong> Descripción del flujo lógico (PID, PWM, etc.).</li>
+                                        <li><strong>Pruebas:</strong> Tiempos registrados en entrenamientos.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Ponderación de Evaluación:</h4>
+                                    <div class="score-row"><div class="score-label">Diseño Mecánico y Estructural</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 20%;"></div></div><div class="score-pts">20 pts</div></div>
+                                    <div class="score-row"><div class="score-label">Desarrollo Electrónico y Potencia</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 20%;"></div></div><div class="score-pts">20 pts</div></div>
+                                    <div class="score-row"><div class="score-label">Estrategia de Control (Algoritmo)</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 30%;"></div></div><div class="score-pts">30 pts</div></div>
+                                    <div class="score-row"><div class="score-label">Calidad Técnica del Documento</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 15%;"></div></div><div class="score-pts">15 pts</div></div>
+                                    <div class="score-row"><div class="score-label">Innovación</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 15%;"></div></div><div class="score-pts">15 pts</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="accordion">4. El Área de Competencia (La Pista)</button>
                     <div class="panel">
                         <div class="panel-inner">
                             <div class="grid-2">
                                 <div class="info-box">
-                                    <h4>🏁 Protocolo de Arranque</h4>
-                                    <ul style="padding-left: 20px; font-size: 0.95rem;">
-                                        <li><strong>Reposo Absoluto:</strong> Cero movimiento hasta la señal.</li>
-                                        <li><strong>Activación:</strong> Botón físico o disparo inalámbrico.</li>
-                                        <li><strong>Autonomía:</strong> 100% autónomo tras el arranque.</li>
+                                    <h4>Características Principales</h4>
+                                    <ul>
+                                        <li><strong>Dimensiones de la pista:</strong> Variable</li>
+                                        <li><strong>Color de la línea a seguir:</strong> Negro</li>
+                                        <li><strong>Ancho de la línea a seguir:</strong> 2 cm (20 mm) ± 10%</li>
+                                        <li><strong>Color del fondo de la pista:</strong> Blanco</li>
+                                        <li><strong>Material de la pista:</strong> Melanina</li>
+                                        <li><strong>Longitud aproximada:</strong> 5 a 20 metros</li>
+                                        <li><strong>Señalización:</strong> La Pista contendrá una marca donde indicará el inicio y final del camino.</li>
                                     </ul>
                                 </div>
                                 <div class="info-box">
-                                    <h4>🔍 Mesa de Homologación</h4>
-                                    <ul style="padding-left: 20px; font-size: 0.95rem;">
-                                        <li>Verificación en cubo 25x25cm.</li>
-                                        <li>Recibe calcomanía de <strong>"Homologado"</strong> y se resguarda.</li>
-                                        <li><strong>PROHIBIDO:</strong> Modificaciones posteriores.</li>
+                                    <h4>Geometría de la Pista</h4>
+                                    <ul>
+                                        <li><strong>Curvas Cerradas:</strong> Radios de giro reducidos que exijan control de velocidad.</li>
+                                        <li><strong>Intersecciones:</strong> Cruces de líneas donde el robot deba mantener su trayectoria original sin desviarse.</li>
+                                        <li><strong>Ángulos de 90°:</strong> Giros ortogonales que requieran algoritmos de detección de escuadras.</li>
+                                        <li><strong>Señalización:</strong> Marcas laterales de inicio y meta para activación de sensores de cronometraje.</li>
+                                        <li><strong>Entorno:</strong> El robot debe operar bajo condiciones de luz ambiental variables. No se permiten solicitudes de luces especiales.</li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="alert-box" style="background-color: #e8f4fd; border-left-color: var(--tecnm-blue); color: var(--tecnm-dark); margin-top: 15px;">
-                                <strong>👨‍🏫 Pits y Asesores:</strong> Función puramente académica. <strong>Estrictamente prohibido</strong> que manipulen el robot o la computadora durante la competencia.
+                        </div>
+                    </div>
+
+                    <button class="accordion">5. Protocolo de Inicio y Estado del Robot</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <p>Con el fin de garantizar la equidad y la precisión en el cronometraje, se establecen las siguientes normas de arranque:</p>
+                            <ul>
+                                <li><strong>Estado de Reposo Absoluto:</strong> Antes de iniciar la vuelta, el robot debe estar totalmente detenido.</li>
+                                <li><strong>Inmovilidad de Componentes:</strong> Ninguna parte del prototipo (motores, turbinas, etc.) podrá presentar movimiento alguno hasta que el juez dé la señal oficial de inicio.</li>
+                                <li><strong>Métodos de Activación:</strong> El robot podrá ser iniciado mediante un control remoto, un botón físico o cualquier dispositivo de disparo inalámbrico.</li>
+                                <li><strong>Autonomía Post-Arranque:</strong> Una vez activado, el robot debe realizar el recorrido de forma 100% autónoma.</li>
+                                <li><strong>Detención Inalámbrica:</strong> Se permite el uso de dispositivos inalámbricos exclusivamente para detener el robot al finalizar su vuelta o ante una emergencia.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button class="accordion">6. Modo de Competencia</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <div class="grid-2">
+                                <div class="info-box">
+                                    <h4>⏱️ Fase de Clasificación (Contrarreloj)</h4>
+                                    <ul>
+                                        <li><strong>Rondas:</strong> Cada robot tiene 2 oportunidades oficiales. Se registrará el mejor tiempo para el ranking.</li>
+                                        <li><strong>Tiempo Límite:</strong> El robot tiene 5 minutos para completar el circuito. Superarlo implica vuelta no concluida.</li>
+                                        <li><strong>Salida de Pista:</strong> Si pierde la trayectoria o sale totalmente, concluye la vuelta. <em>Excepción:</em> Si regresa de forma autónoma al punto exacto donde se desvió (sin intervención humana).</li>
+                                        <li><strong>Restricción:</strong> No se permite la reprogramación del software ni modificaciones entre vuelta.</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box">
+                                    <h4>🏁 Fase Final (Modo Persecución)</h4>
+                                    <p>Los mejores clasificados por tiempo avanzan a esta fase:</p>
+                                    <ul>
+                                        <li>Dos robots inician en puntos opuestos de un circuito cerrado.</li>
+                                        <li><strong>Ganador:</strong> El robot que alcance al otro (distancia de toque visual).</li>
+                                        <li><strong>Restricción:</strong> No se permite la reprogramación del software entre enfrentamientos.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <button class="accordion">4. Modalidad de Competencia y Clasificación</button>
+                    <button class="accordion">7. Organización y Clasificación</button>
                     <div class="panel">
                         <div class="panel-inner">
-                            <div class="info-box" style="margin-bottom: 15px;">
-                                <h4>⏱️ Fase 1: Clasificación (Contrarreloj)</h4>
-                                <p style="font-size: 0.95rem;"><strong>2 oportunidades oficiales</strong>. Límite de 5 minutos por circuito. Se guarda el mejor tiempo. NO se permite reprogramar software entre vueltas.</p>
-                            </div>
-                            <div class="info-box" style="margin-bottom: 15px;">
-                                <h4>🏎️ Fase 2: Final (Modo Persecución)</h4>
-                                <p style="font-size: 0.95rem;">Dos robots inician en puntos opuestos. <strong>Gana el robot que alcance al otro</strong>. No hay reprogramación entre enfrentamientos.</p>
-                            </div>
+                            <ul>
+                                <li><strong>Etapa local:</strong> Cada tecnológico acreditará máximo 5 robots.</li>
+                                <li><strong>Cupo por Región:</strong> Cada región acreditará hasta 7 robots.</li>
+                                <li><strong>Cupo Nacional:</strong> Máximo de 70 en la fase nacional.</li>
+                                <li><strong>Redistribución:</strong> Si una región no cubre sus lugares, el Comité Nacional los reasignará a regiones con mayor competitividad.</li>
+                            </ul>
+                            
+                            <h4 style="margin-top: 20px;">Criterios de Desempate</h4>
+                            <p>En caso de igualdad de tiempos en el ranking general:</p>
+                            <ol>
+                                <li><strong>Vuelta de desempate:</strong> Cada robot realizará un recorrido extra y el mejor tiempo obtenido romperá el empate.</li>
+                                <li><strong>Decisión del jurado:</strong> Como último recurso, si el empate persiste, el jurado tomará la decisión final.</li>
+                            </ol>
                         </div>
                     </div>
 
-                    <button class="accordion">5. Memoria Técnica (Documentación)</button>
+                    <button class="accordion">8. Pits y Asesores</button>
                     <div class="panel">
                         <div class="panel-inner">
-                            <p>Entregar un PDF de 5-10 páginas es un <strong>requisito indispensable</strong>.</p>
-                            <h4 style="margin-top: 20px;">Ponderación de Evaluación:</h4>
-                            <div class="score-row"><div class="score-label">Algoritmo y Control</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 30%;"></div></div><div class="score-pts">30 pts</div></div>
-                            <div class="score-row"><div class="score-label">Diseño Mecánico</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 20%;"></div></div><div class="score-pts">20 pts</div></div>
-                            <div class="score-row"><div class="score-label">Electrónica y Potencia</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 20%;"></div></div><div class="score-pts">20 pts</div></div>
-                            <div class="score-row"><div class="score-label">Innovación</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 15%; background: var(--tecnm-gold);"></div></div><div class="score-pts">15 pts</div></div>
-                            <div class="score-row"><div class="score-label">Calidad del Documento</div><div class="score-bar-bg"><div class="score-bar-fill" style="width: 15%; background: var(--tecnm-gold);"></div></div><div class="score-pts">15 pts</div></div>
+                            <ul>
+                                <li><strong>Área de Pits:</strong> Espacio para ajustes menores y carga de baterías. Debe mantenerse ordenado.</li>
+                                <li><strong>Asesores:</strong> Su función es puramente académica. Está estrictamente prohibido que manipulen el robot o la computadora durante el periodo de competencia (desde la homologación hasta la final).</li>
+                                <li><strong>Tiempo de Reparación:</strong> No existe tiempo de reparación durante la homologación hasta el final de cada fase.</li>
+                            </ul>
                         </div>
                     </div>
+
+                    <button class="accordion">9. Protocolo de Homologación</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <p>Todos los robots pasarán por la mesa técnica antes de competir:</p>
+                            <ul>
+                                <li><strong>Verificación de Medidas:</strong> El robot debe entrar libremente en el cubo de 25cm x 25cm.</li>
+                                <li><strong>Prueba de Seguridad:</strong> Inspección de baterías y revisión de componentes.</li>
+                                <li><strong>Entrega de Calcomanía:</strong> Una vez aprobado, se coloca el distintivo de "Robot Homologado". Sin este, no puede ingresar a la pista.</li>
+                                <li><strong>Resguardo del Prototipo:</strong> Una vez homologado, el robot se dejará en una mesa especial. Ya debe contener todos sus elementos finales; no se permitirá ningún tipo de modificación o ajuste al prototipo hasta el final de la fase.</li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
             <section id="tutorias" class="content-section">
                 <div class="card">
-                    <h1>📚 Tutorías y Recursos de Ingeniería</h1>
-                    <p>Para lograr un desempeño de excelencia en la competencia, preparamos esta selección de material, proveedores e información clave. Todo lo necesario para llevar tu prototipo al siguiente nivel.</p>
+                    <h1>📚 Hub de Aprendizaje y Recursos</h1>
+                    <p>Selecciona la categoría para acceder al material de apoyo técnico.</p>
 
-                    <h2>1. Proveedores y Tiendas en México</h2>
-                    <div class="grid-cards">
-                        <div class="resource-card">
-                            <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="resource-img" alt="Componentes Electrónicos">
-                            <div class="resource-title">UNIT Electronics</div>
-                            <div class="resource-desc">Excelente surtido de microcontroladores (ESP32, Arduino), puentes H y sensores ópticos QTR. Envíos a todo México.</div>
-                            <a href="https://uelectronics.com/" target="_blank" class="btn-link">Visitar Tienda</a>
+                    <div class="category-selector" id="resourceTabs">
+                        <button class="cat-btn active" data-content="res-seguidor">Seguidores de Línea</button>
+                        <button class="cat-btn" data-content="res-minisumo">Minisumo</button>
+                        <button class="cat-btn" data-content="res-vant">VANT (Drones)</button>
+                        <button class="cat-btn" data-content="res-cansat">CanSat</button>
+                        <button class="cat-btn" data-content="res-otros">Otras Categorías</button>
+                    </div>
+
+                    <div id="res-seguidor" class="cat-content active">
+                        <div class="grid-2">
+                            <div class="info-box">
+                                <h4>💻 Simulación y Diseño</h4>
+                                <ul class="tool-list">
+                                    <li><strong>Webots / Tinkercad:</strong> Para simulación de física y electrónica base.</li>
+                                    <li><strong>EasyEDA / KiCad:</strong> Para el diseño original de la PCB. Manufactura en JLCPCB o PCBWay.</li>
+                                    <li><strong>Impresión 3D:</strong> Uso de laminadores como Bambu Studio para prototipado rápido del chasis.</li>
+                                </ul>
+                            </div>
+                            <div class="video-wrapper" style="margin-bottom: 0;">
+                                <iframe src="https://www.youtube.com/embed/k_vUoXwXyW8" allowfullscreen></iframe>
+                            </div>
                         </div>
-                        <div class="resource-card">
-                            <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="resource-img" alt="Motores y PCBs">
-                            <div class="resource-title">320 Voltios / HetPro</div>
-                            <div class="resource-desc">Especialistas en robótica competitiva: motores de micrometal de altas RPM, llantas de silicón de alto agarre y soportes.</div>
-                            <a href="https://hetpro-store.com/" target="_blank" class="btn-link">Visitar Tienda</a>
-                        </div>
-                        <div class="resource-card">
-                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="resource-img" alt="Electrónica Industrial">
-                            <div class="resource-title">AG Electrónica</div>
-                            <div class="resource-desc">Gran proveedor en la CDMX para componentes específicos, baterías LiPo de alta descarga y circuitos integrados.</div>
-                            <a href="https://www.agelectronica.com/" target="_blank" class="btn-link">Visitar Tienda</a>
+
+                        <h3 style="margin-top:30px;">Proveedores en México</h3>
+                        <div class="grid-cards">
+                            <div class="resource-card">
+                                <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="resource-img" alt="Componentes">
+                                <div class="resource-title">UNIT Electronics</div>
+                                <div class="resource-desc">Microcontroladores, puentes H y sensores QTR.</div>
+                                <a href="https://uelectronics.com/" target="_blank" class="btn-link">Visitar</a>
+                            </div>
+                            <div class="resource-card">
+                                <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="resource-img" alt="Motores">
+                                <div class="resource-title">320 Voltios / HetPro</div>
+                                <div class="resource-desc">Motores de micrometal y llantas de alto agarre.</div>
+                                <a href="https://hetpro-store.com/" target="_blank" class="btn-link">Visitar</a>
+                            </div>
+                            <div class="resource-card">
+                                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="resource-img" alt="Electrónica">
+                                <div class="resource-title">AG Electrónica</div>
+                                <div class="resource-desc">Baterías LiPo y circuitos integrados en CDMX.</div>
+                                <a href="https://www.agelectronica.com/" target="_blank" class="btn-link">Visitar</a>
+                            </div>
                         </div>
                     </div>
 
-                    <h2>2. Material Audiovisual y Videotutoriales</h2>
-                    <div class="grid-cards">
-                        <div class="resource-card">
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed/k_vUoXwXyW8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <div class="resource-title">Algoritmo PID para Seguidores</div>
-                            <div class="resource-desc">Aprende la teoría y programación de un control Proporcional, Integral y Derivativo para un movimiento suave en pista.</div>
-                        </div>
-                        <div class="resource-card">
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed/Q0q7XyOa3tM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <div class="resource-title">Diseño de PCB desde Cero</div>
-                            <div class="resource-desc">Tutorial de diseño de placas impresas para optimizar espacio y peso, un punto muy calificado por los jueces.</div>
-                        </div>
+                    <div id="res-minisumo" class="cat-content"><div class="info-box" style="text-align:center; padding:30px;"><h3>🚧 En Construcción</h3><p>Recursos para Minisumo próximamente.</p></div></div>
+                    <div id="res-vant" class="cat-content">
+                        <p></p>
+                        <div class="info-box" style="text-align:center; padding:30px;"><h3>🚧 En Construcción</h3><p>Guías de VANT y calibración de vuelo próximamente.</p></div>
                     </div>
-
-                    <h2>3. Recomendaciones Top de los Jueces</h2>
-                    <ul class="tip-list">
-                        <li><strong>Centro de Masa:</strong> Mantén las baterías y los motores lo más pegados al piso posible. Esto evita que el robot salga "volando" en curvas cerradas.</li>
-                        <li><strong>Limpieza de Llantas:</strong> Antes de tu turno de homologación o carrera, limpia las llantas de silicón con alcohol isopropílico. El polvo de la pista reduce drásticamente el agarre.</li>
-                        <li><strong>Calibración Dinámica:</strong> Programa una rutina donde tu robot lea los valores de blanco y negro justo antes de arrancar. La iluminación del gimnasio o salón del evento puede cambiar durante el día, engañando a tus sensores.</li>
-                        <li><strong>No uses simples "If/Else":</strong> Un robot que zigzaguea pierde valiosos milisegundos. Implementar un control PID marca la diferencia entre el primer y último lugar.</li>
-                    </ul>
+                    <div id="res-cansat" class="cat-content">
+                        <p></p>
+                        <div class="info-box" style="text-align:center; padding:30px;"><h3>🚧 En Construcción</h3><p>Material de telemetría y sensores para CanSat próximamente.</p></div>
+                    </div>
+                    <div id="res-otros" class="cat-content"><div class="info-box" style="text-align:center; padding:30px;"><h3>🚧 En Construcción</h3><p>Recursos para Aplicada, Humanoides, Buscadores y Soccer próximamente.</p></div></div>
                 </div>
             </section>
 
-            <section id="minisumo" class="content-section"><div class="card"><h1>Mini Sumo</h1><p>Próximamente...</p></div></section>
+            <section id="minisumo" class="content-section"><div class="card"><h1>2. Robots Minisumo</h1><p>Reglamento en desarrollo para la plataforma oficial...</p></div></section>
+            <section id="aplicada" class="content-section"><div class="card"><h1>3. Robótica Aplicada</h1><p>Categoría exclusiva a partir de Etapa Regional. Reglamento en desarrollo...</p></div></section>
+            <section id="humanoides" class="content-section"><div class="card"><h1>4. Robots Humanoides</h1><p>Categoría exclusiva a partir de Etapa Regional. Reglamento en desarrollo...</p></div></section>
+            <section id="buscadores" class="content-section"><div class="card"><h1>5. Robots Buscadores</h1><p>Categoría exclusiva a partir de Etapa Regional. Reglamento en desarrollo...</p></div></section>
+            <section id="vant" class="content-section"><div class="card"><h1>6. VANT</h1><p>Categoría exclusiva a partir de Etapa Regional. Reglamento en desarrollo...</p></div></section>
+            <section id="cansat" class="content-section"><div class="card"><h1>7. CanSat</h1><p>Categoría exclusiva a partir de Etapa Regional. Reglamento en desarrollo...</p></div></section>
+            <section id="soccer" class="content-section"><div class="card"><h1>8. Robot Soccer</h1><p>Categoría exclusiva a partir de Etapa Regional. Reglamento en desarrollo...</p></div></section>
+            <section id="bioinspirada" class="content-section"><div class="card"><h1>Exhibición Bioinspirada</h1><p>Demostración tecnológica mediante validación previa.</p></div></section>
+
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Lógica para las pestañas del menú lateral
             const menuItems = document.querySelectorAll('#mainMenu li');
             const sections = document.querySelectorAll('.content-section');
 
             menuItems.forEach(item => {
                 item.addEventListener('click', () => {
+                    if(item.getAttribute('data-target') === null) return; 
                     menuItems.forEach(nav => nav.classList.remove('active'));
                     sections.forEach(sec => sec.classList.remove('active'));
                     
                     item.classList.add('active');
-                    const targetId = item.getAttribute('data-target');
-                    const targetSection = document.getElementById(targetId);
-                    
+                    const targetSection = document.getElementById(item.getAttribute('data-target'));
                     if(targetSection) {
                         targetSection.classList.add('active');
                         document.querySelector('.content-scroll').scrollTop = 0;
@@ -423,15 +650,11 @@
                 });
             });
 
-            // Lógica para los Acordeones de la sección "Seguidores"
             const accordions = document.querySelectorAll(".accordion");
-            
-            // Abrir el primer acordeón por defecto
             if(accordions.length > 0) {
                 accordions[0].classList.add("active-acc");
                 accordions[0].nextElementSibling.style.maxHeight = accordions[0].nextElementSibling.scrollHeight + "px";
             }
-
             accordions.forEach(acc => {
                 acc.addEventListener("click", function() {
                     this.classList.toggle("active-acc");
@@ -441,6 +664,19 @@
                     } else {
                         panel.style.maxHeight = panel.scrollHeight + "px";
                     }
+                });
+            });
+
+            const resTabs = document.querySelectorAll('#resourceTabs .cat-btn');
+            const resContents = document.querySelectorAll('.cat-content');
+
+            resTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    resTabs.forEach(t => t.classList.remove('active'));
+                    resContents.forEach(c => c.classList.remove('active'));
+                    tab.classList.add('active');
+                    const targetContent = document.getElementById(tab.getAttribute('data-content'));
+                    if(targetContent) targetContent.classList.add('active');
                 });
             });
         });
