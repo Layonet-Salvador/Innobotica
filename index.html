@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innobótica - Reglamento Interactivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tecnm-blue: #1B396A;
+            --tecnm-dark: #0f2144;
+            --tecnm-gold: #D4A359;
+            --bg-light: #F8F9FA;
+            --white: #ffffff;
+            --shadow-card: 0 4px 20px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0; font-family: 'Montserrat', sans-serif; display: flex;
+            height: 100vh; background-color: var(--bg-light); color: #333; overflow: hidden;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 280px; background: linear-gradient(180deg, var(--tecnm-blue) 0%, var(--tecnm-dark) 100%);
+            color: white; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+            z-index: 100; flex-shrink: 0;
+        }
+        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-header h2 { margin: 0; font-size: 1.4rem; font-weight: 700; color: var(--white); }
+        .sidebar-header span { color: var(--tecnm-gold); font-size: 0.9rem; text-transform: uppercase; display: block; margin-top: 5px; }
+        .nav-menu { list-style: none; padding: 20px 0; margin: 0; overflow-y: auto; }
+        .nav-menu li {
+            padding: 16px 25px; cursor: pointer; border-left: 4px solid transparent;
+            transition: var(--transition); font-size: 0.95rem; opacity: 0.8;
+        }
+        .nav-menu li:hover { background-color: rgba(255,255,255,0.05); opacity: 1; padding-left: 30px; }
+        .nav-menu li.active {
+            background-color: rgba(255,255,255,0.1); border-left-color: var(--tecnm-gold);
+            color: var(--white); opacity: 1; font-weight: 600;
+        }
+
+        /* --- ÁREA PRINCIPAL --- */
+        .main-wrapper { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+        /* --- HEADER CON LOGOS OFICIALES --- */
+        .top-bar {
+            background-color: var(--white); height: 90px; display: flex; align-items: center;
+            justify-content: space-between; padding: 0 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 90;
+        }
+        .logos-area { display: flex; gap: 30px; align-items: center; height: 100%; }
+        .logos-area img { max-height: 65px; width: auto; object-fit: contain; }
+        .event-status {
+            font-size: 0.9rem; color: var(--tecnm-blue); font-weight: 600;
+            background: rgba(27, 57, 106, 0.1); padding: 8px 16px; border-radius: 20px;
+        }
+
+        /* --- CONTENIDO --- */
+        .content-scroll { flex: 1; overflow-y: auto; padding: 40px; scroll-behavior: smooth; }
+        .content-section { display: none; max-width: 1000px; margin: 0 auto 50px auto; animation: slideUp 0.5s ease; }
+        .content-section.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- ESTILOS GENERALES DE TARJETAS --- */
+        .card { background: var(--white); border-radius: 12px; padding: 40px; box-shadow: var(--shadow-card); margin-bottom: 30px; border-top: 4px solid var(--tecnm-blue); }
+        h1 { color: var(--tecnm-blue); font-size: 2rem; margin-top: 0; margin-bottom: 10px; }
+        h2 { color: var(--tecnm-dark); font-size: 1.4rem; margin-top: 30px; border-left: 4px solid var(--tecnm-gold); padding-left: 15px; }
+        p, li { line-height: 1.7; color: #4a4a4a; font-size: 1rem; }
+        
+        /* --- ACORDEONES INTERACTIVOS (NUEVO) --- */
+        .accordion {
+            background-color: #fff;
+            color: var(--tecnm-blue);
+            cursor: pointer;
+            padding: 18px 20px;
+            width: 100%;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.4s;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion:hover, .accordion.active-acc { background-color: rgba(27, 57, 106, 0.05); border-color: var(--tecnm-blue); }
+        .accordion:after {
+            content: '\002B'; /* Signo de suma */
+            color: var(--tecnm-gold); font-weight: bold; float: right; margin-left: 5px; font-size: 1.5rem;
+        }
+        .accordion.active-acc:after { content: "\2212"; /* Signo de resta */ }
+        .panel {
+            padding: 0 20px; background-color: white; max-height: 0;
+            overflow: hidden; transition: max-height 0.4s ease-out;
+            border-left: 2px solid var(--tecnm-blue); margin-left: 10px; border-radius: 0 0 8px 8px;
+        }
+        .panel-inner { padding: 20px 0; }
+
+        /* --- GRIDS Y BADGES (NUEVO) --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        
+        .info-box {
+            background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .info-box h4 { margin-top: 0; color: var(--tecnm-dark); font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+        
+        .badge {
+            display: inline-block; padding: 5px 12px; background: rgba(212, 163, 89, 0.15);
+            color: #b0803c; border-radius: 15px; font-size: 0.85rem; font-weight: 600; margin: 4px;
+        }
+        .badge-blue { background: rgba(27, 57, 106, 0.1); color: var(--tecnm-blue); }
+
+        .alert-box { background-color: #fff8e1; border-left: 4px solid #ffc107; padding: 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        
+        /* Progress Bar para Memoria Técnica */
+        .score-row { display: flex; align-items: center; margin-bottom: 12px; }
+        .score-label { width: 250px; font-weight: 600; font-size: 0.9rem; }
+        .score-bar-bg { flex-grow: 1; background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-right: 15px; }
+        .score-bar-fill { height: 100%; background: var(--tecnm-blue); }
+        .score-pts { width: 40px; text-align: right; font-weight: bold; color: var(--tecnm-gold); }
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>INNOBÓTICA</h2>
+            <span>Reglamento Oficial</span>
+        </div>
+        <ul class="nav-menu" id="mainMenu">
+            <li data-target="inicio">Criterios Generales</li>
+            <li data-target="seguidor" class="active">Seguidores de Línea</li>
+            <li data-target="minisumo">Mini Sumo</li>
+            <li data-target="tutorias" style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px; padding-top: 20px;">📚 Recursos</li>
+        </ul>
+    </aside>
+
+    <div class="main-wrapper">
+        <header class="top-bar">
+            <div class="logos-area">
+                <img src="https://innova.tecnm.mx/archivosComunes/images/banner/educacion_tecnm_min.png" alt="Educación TecNM">
+                <img src="https://innova.tecnm.mx/archivosComunes/images/banner/Logotipo-7e3727.png" alt="InnovaTecNM">
+            </div>
+            <div class="event-status">Edición 2026</div>
+        </header>
+
+        <div class="content-scroll">
+            
+            <section id="inicio" class="content-section">
+                <div class="card">
+                    <h1>Criterios Generales</h1>
+                    <p>Haz clic en "Seguidores de Línea" en el menú izquierdo para ver el reglamento interactivo.</p>
+                </div>
+            </section>
+
+            <section id="seguidor" class="content-section active">
+                <div class="card">
+                    <h1>Reglamento Técnico: Seguidores de Línea</h1>
+                    <p style="font-size: 1.1rem;">La categoría consiste en el desarrollo de un robot autónomo capaz de recorrer un circuito de alto contraste (línea negra sobre fondo blanco) en el menor tiempo posible.</p>
+
+                    <div class="grid-4" style="margin-bottom: 30px;">
+                        <div class="info-box" style="border-top: 3px solid var(--tecnm-gold);">
+                            <h4>🎯 Objetivo General</h4>
+                            <p style="font-size: 0.85rem; margin-bottom:0;">Crear sistemas autónomos con hardware y algoritmos de alta precisión para resolver trayectorias complejas.</p>
+                        </div>
+                        <div class="info-box">
+                            <h4>🏭 Industria 4.0</h4>
+                            <p style="font-size: 0.85rem; margin-bottom:0;">Simulación de AGVs y AMRs para optimizar flujos en almacenes logísticos inteligentes.</p>
+                        </div>
+                        <div class="info-box">
+                            <h4>🏥 Sector Salud</h4>
+                            <p style="font-size: 0.85rem; margin-bottom:0;">Bases para robots de servicio que transporten suministros o muestras biológicas.</p>
+                        </div>
+                        <div class="info-box">
+                            <h4>🌾 Smart Cities & Agro</h4>
+                            <p style="font-size: 0.85rem; margin-bottom:0;">Sistemas de monitoreo en invernaderos o reparto de última milla mediante señalética.</p>
+                        </div>
+                    </div>
+
+                    <button class="accordion">1. Especificaciones de Construcción y Componentes</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <p><em>El incumplimiento de cualquier punto resultará en la no homologación del prototipo.</em></p>
+                            
+                            <div class="grid-2">
+                                <div class="info-box">
+                                    <h4>📏 Dimensiones y Peso</h4>
+                                    <ul>
+                                        <li><strong>Área Máxima:</strong> El robot debe caber plenamente en una caja de <strong>250 mm x 250 mm</strong> (todo cable o sensor incluido).</li>
+                                        <li><strong>Altura:</strong> Sin límite (mientras no interfiera con sensores de meta).</li>
+                                        <li><strong>Peso:</strong> Sin límite.</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box">
+                                    <h4>⚠️ Materiales y Seguridad</h4>
+                                    <ul>
+                                        <li><strong>Llantas:</strong> Prohibido usar neumáticos que dejen marcas o residuos pegajosos. Deben estar secas al entrar a pista.</li>
+                                        <li><strong>Estructura:</strong> Cero bordes filosos. Si usas fibra de carbono, los bordes deben sellarse con barniz o resina.</li>
+                                        <li><strong>Baterías:</strong> Solo secas (LiPo, Li-ion, NiMH). Firmemente sujetas y aisladas. Cero cables externos.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="alert-box" style="margin-top: 20px;">
+                                <h4 style="margin-top:0; color: #856404;">🔌 Regla Estricta: Diseño de PCB</h4>
+                                <p><strong>ESTA ES UNA CATEGORÍA ÚNICA (Sin distinción entre amateur o profesional).</strong></p>
+                                <p style="margin-bottom:0;">No se permite el uso de robots pre-ensamblados o kits comerciales. Si se usa una PCB, <strong>debe ser de diseño propio</strong>. Puedes usar métodos caseros (planchado, ruteado CNC) o mandarlas a fabricar con proveedores profesionales (ej. <em>JLCPCB, PCBWay</em>). <br><br><em>Nota: Si el jurado identifica PCBs idénticas entre distintos equipos, se considerarán kits comerciales y causará descalificación automática por falta de originalidad.</em></p>
+                            </div>
+
+                            <div class="info-box" style="margin-top: 20px;">
+                                <h4>⚙️ Componentes Permitidos</h4>
+                                <span class="badge badge-blue">Motores: Brushless / DC / Industriales</span>
+                                <span class="badge badge-blue">Succión: Turbinas EDF</span>
+                                <span class="badge badge-blue">Sensores: Infrarrojos / Láser / Encoders (Sin límite)</span>
+                                <span class="badge badge-blue">Control: ESP32 / Arduino / Pico / STM32</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="accordion">2. Área de Competencia (La Pista)</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 10px;">✅ <strong>Material y Colores:</strong> Pista de Melamina. Fondo Blanco con Línea Negra.</li>
+                                <li style="margin-bottom: 10px;">✅ <strong>Grosor de Línea:</strong> 2 cm (20 mm) ± 10%.</li>
+                                <li style="margin-bottom: 10px;">✅ <strong>Longitud:</strong> Variable, entre 5 y 20 metros.</li>
+                                <li style="margin-bottom: 10px;">✅ <strong>Geometría Posible:</strong> Curvas cerradas, intersecciones (cruces de línea donde debe mantener la trayectoria original), y ángulos ortogonales de 90°.</li>
+                                <li>✅ <strong>Entorno:</strong> El robot debe soportar luz ambiental variable. No se permiten solicitudes de luces especiales. Cuenta con marcas de inicio y meta.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button class="accordion">3. Protocolos de Inicio, Homologación y Asesores</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <div class="grid-2">
+                                <div class="info-box">
+                                    <h4>🏁 Protocolo de Arranque</h4>
+                                    <ul style="padding-left: 20px; font-size: 0.95rem;">
+                                        <li><strong>Reposo Absoluto:</strong> Cero movimiento de componentes hasta la señal del juez.</li>
+                                        <li><strong>Activación:</strong> Botón físico, control remoto o disparo inalámbrico.</li>
+                                        <li><strong>Autonomía:</strong> 100% autónomo tras el arranque. Dispositivos inalámbricos solo permitidos para detener el robot (emergencia/fin).</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box">
+                                    <h4>🔍 Mesa de Homologación</h4>
+                                    <ul style="padding-left: 20px; font-size: 0.95rem;">
+                                        <li>Verificación en cubo 25x25cm y seguridad de baterías.</li>
+                                        <li>Una vez aprobado, recibe calcomanía de <strong>"Homologado"</strong> y se va a mesa de resguardo.</li>
+                                        <li><strong>PROHIBIDO:</strong> Hacer modificaciones, ajustes o agregar aditamentos después de este punto.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="alert-box" style="background-color: #e8f4fd; border-left-color: var(--tecnm-blue); color: var(--tecnm-dark); margin-top: 15px;">
+                                <strong>👨‍🏫 Pits y Asesores:</strong> La función del asesor es puramente académica. Está <strong>estrictamente prohibido</strong> que manipulen el robot o la computadora durante la competencia (desde la homologación hasta la final). No existe tiempo de reparación durante las fases.
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="accordion">4. Modalidad de Competencia y Clasificación</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <div class="info-box" style="margin-bottom: 15px;">
+                                <h4>⏱️ Fase 1: Clasificación (Contrarreloj)</h4>
+                                <p style="font-size: 0.95rem;">Cada robot tiene <strong>2 oportunidades oficiales</strong> y un límite de 5 minutos por circuito. Se guarda el mejor tiempo.<br>
+                                <em>Salida de Pista:</em> Si sale totalmente de la línea, la vuelta concluye, a menos que regrese de forma autónoma al punto exacto donde se desvió sin intervención humana. <br>
+                                <strong>NO se permite reprogramar software entre vueltas.</strong></p>
+                            </div>
+                            <div class="info-box" style="margin-bottom: 15px;">
+                                <h4>🏎️ Fase 2: Final (Modo Persecución)</h4>
+                                <p style="font-size: 0.95rem;">Los mejores tiempos avanzan. Dos robots inician en puntos opuestos de un circuito cerrado. <strong>Gana el robot que alcance al otro</strong> (distancia de toque visual). No hay reprogramación entre enfrentamientos.</p>
+                            </div>
+                            <p><strong>Cupos y Empates:</strong> Máximo 5 por tecnológico, 7 por región (70 a nivel nacional). En caso de empate de tiempos, se realiza una vuelta de desempate extra. Si persiste, el jurado tomará la decisión final.</p>
+                        </div>
+                    </div>
+
+                    <button class="accordion">5. Memoria Técnica (Documentación)</button>
+                    <div class="panel">
+                        <div class="panel-inner">
+                            <p>Entregar un PDF de 5-10 páginas es un <strong>requisito indispensable</strong> para ser admitido y para desempates en el ranking nacional. Debe contener diagrama de flujo, justificación de componentes, algoritmos (PID/PWM) y pruebas.</p>
+                            
+                            <h4 style="margin-top: 20px;">Ponderación de Evaluación de la Memoria:</h4>
+                            
+                            <div class="score-row">
+                                <div class="score-label">Algoritmo y Control</div>
+                                <div class="score-bar-bg"><div class="score-bar-fill" style="width: 30%;"></div></div>
+                                <div class="score-pts">30 pts</div>
+                            </div>
+                            <div class="score-row">
+                                <div class="score-label">Diseño Mecánico (ej. Impresión 3D)</div>
+                                <div class="score-bar-bg"><div class="score-bar-fill" style="width: 20%;"></div></div>
+                                <div class="score-pts">20 pts</div>
+                            </div>
+                            <div class="score-row">
+                                <div class="score-label">Electrónica y Potencia</div>
+                                <div class="score-bar-bg"><div class="score-bar-fill" style="width: 20%;"></div></div>
+                                <div class="score-pts">20 pts</div>
+                            </div>
+                            <div class="score-row">
+                                <div class="score-label">Innovación</div>
+                                <div class="score-bar-bg"><div class="score-bar-fill" style="width: 15%; background: var(--tecnm-gold);"></div></div>
+                                <div class="score-pts">15 pts</div>
+                            </div>
+                            <div class="score-row">
+                                <div class="score-label">Calidad Técnica del Documento</div>
+                                <div class="score-bar-bg"><div class="score-bar-fill" style="width: 15%; background: var(--tecnm-gold);"></div></div>
+                                <div class="score-pts">15 pts</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="minisumo" class="content-section"><div class="card"><h1>Mini Sumo</h1><p>Próximamente...</p></div></section>
+            <section id="tutorias" class="content-section"><div class="card"><h1>Recursos</h1><p>Próximamente...</p></div></section>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lógica para las pestañas del menú lateral
+            const menuItems = document.querySelectorAll('#mainMenu li');
+            const sections = document.querySelectorAll('.content-section');
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    menuItems.forEach(nav => nav.classList.remove('active'));
+                    sections.forEach(sec => sec.classList.remove('active'));
+                    
+                    item.classList.add('active');
+                    const targetId = item.getAttribute('data-target');
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if(targetSection) {
+                        targetSection.classList.add('active');
+                        document.querySelector('.content-scroll').scrollTop = 0;
+                    }
+                });
+            });
+
+            // Lógica para los Acordeones de la sección "Seguidores"
+            const accordions = document.querySelectorAll(".accordion");
+            
+            // Opcional: Abrir el primer acordeón por defecto
+            if(accordions.length > 0) {
+                accordions[0].classList.add("active-acc");
+                accordions[0].nextElementSibling.style.maxHeight = accordions[0].nextElementSibling.scrollHeight + "px";
+            }
+
+            accordions.forEach(acc => {
+                acc.addEventListener("click", function() {
+                    this.classList.toggle("active-acc");
+                    const panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
